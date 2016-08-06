@@ -22,17 +22,17 @@ Every message consists of a json message and the length of the json message. Len
 ### Create Eventbus ###
 
 to import eventbus,
-
+```c
 	#include "vertx.h"
-
+```
 to create eventbus,
-
+```c
 	setHost("127.0.0.1") 
 	setPort(7000)
 	setTimeOut(1000)
 	create_eventbus();
     start_eventbus();
-
+```
 to create Eventbus those parameters used.
 
 - Host - default is "127.0.0.1"
@@ -42,44 +42,44 @@ to create Eventbus those parameters used.
 ### Addressing ###
 
 Every eventbus message has an address and the client will handle the message according to its address. An address can be any string.
-
+```c
 	eg: "vertx", "pink pig", "x.y.z"
-
+```
 ### Handling Messages ###
 
 To handle a message, Handlers are used. Handlers are functions that take only one argument (String *). 
 
 to implement a handler,
-
+```c
 	void myHandler(String *msg){
     	printf("%s",*msg);
     	i++;
 	}
-	
+```	
 
 ### Register Handlers ###
 
 In order to handle messages, Handlers should be registered under an address.
 
 to register a handler,
-
+```c
 	eventbus_register("Get",myHandler);
-
+```
 After that any message that comes to the address will be sent to the handler.
 
 ### Unregister Handlers ###
 
 to unregister an address,
-
+```c
 	eventbus_unregister("Get");
-
+```
 ### Send ###
 
 Messages can be sent,
-
+```c
 	eventbus_send("Get",NULL,"{\"type\":\"text\"}","{\"message\":\"welcome\"}");
     eventbus_send("Get","Get","{\"type\":\"text\"}","{\"message\":\"welcome\"}");
-		
+```		
 
 send takes 4 arguments
 
@@ -92,9 +92,9 @@ send takes 4 arguments
 ### Publish ###
 
 Messages can be published in this way,
-
+```c
 	eventbus_publish("Get","{\"type\":\"text\"}","{\"message\":\"welcome\"}");
-
+```
 publish takes 3 arguments 
 
 - address
@@ -104,9 +104,9 @@ publish takes 3 arguments
 ### Close Connection ###
 
 You must close the connection at the end of the program. If not program wont close at the end.
-
+```c
 	close_eventbus(); 
-
+```
 ## Examples ###
 
 You can get examples from Github
